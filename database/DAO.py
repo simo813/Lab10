@@ -1,5 +1,6 @@
 from database.DB_connect import DBConnect
 from model.country import Country
+from model.country import CountryDAO
 
 class DAO():
     @staticmethod
@@ -20,6 +21,7 @@ class DAO():
 
             for row in cursor:
                 result.append(Country(row["CCode"], row["StateNme"]))
+
 
             cursor.close()
             conn.close()

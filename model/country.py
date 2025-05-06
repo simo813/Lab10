@@ -22,6 +22,16 @@ class CountryDAO:
         # Restituisce l'oggetto Country corrispondente al codice, o None se non esiste
         return self.countries.get(code, None)
 
+    def add(self, country):
+        self.countries[country.code] = country
+
+    def reset(self):
+        self.countries = {}
+
+
+
+
+
 
 
 

@@ -1,5 +1,7 @@
 import flet as ft
 import networkx as nx
+from model.country import CountryDAO
+
 
 
 class Controller:
@@ -8,6 +10,8 @@ class Controller:
         self._view = view
         # the model, which implements the logic of the program and holds the data
         self._model = model
+        self.countryDAO = CountryDAO()
+
 
     def handleCalcola(self, e):
         self._view._txt_result.controls = []
@@ -22,6 +26,7 @@ class Controller:
                                                       f"Il grafo ha {componentiConnesse}\n"
                                                       f"Di seguito il dettaglio sui nodi\n"
                                                         f"{self.listaNodi(graph)}"))
+        self.countryDAO.reset()
         self._view.update_page()
 
     def is_integer(self, s):
@@ -33,8 +38,9 @@ class Controller:
 
     def listaNodi(self, graph):
         stampa = ""
-        for node in graph:
-            stampa += str(self._model.listaPaesi[node]) + " -- " + str(graph.degree(node)) + "\n"
+        sorted_nodes = sorted(graph.nodes, key=lambda country: country.name)
+        for node in sorted_nodes:
+            stampa += str(node.name) + " -- " + str(graph.degree(node)) + "\n"
         return stampa
 
 

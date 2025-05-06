@@ -11,6 +11,8 @@ class View(ft.UserControl):
         self._page.theme_mode = ft.ThemeMode.LIGHT
         # controller (it is not initialized. Must be initialized in the main, after the controller is created)
         self._controller = None
+        self._txtAnno = None
+        self._btnCalcola = None
         # graphical elements
         self._title = None
 
